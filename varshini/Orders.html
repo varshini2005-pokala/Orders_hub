@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Orders - App Orders</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+  body {
+    background-image: url("o3.jpg") !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+    .orders-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .orders-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .order-item {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    .order-item:last-child {
+      border-bottom: none;
+    }
+    .item-name {
+      font-weight: bold;
+    }
+    .item-price {
+      float: right;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="orders-container">
+    <h2 id="appHeading">Your Orders</h2>
+    <div id="ordersList">
+      <button class="logout-btn" onclick="logout()">Logout</button>
+      <div id="orderList" class="orders-section"></div>
+
+    </div>
+  </div>
+
+  <script>
+  const orderContainer = document.getElementById("orderList"); // You'll add this div in your HTML
+
+  const userOrders = ordersData[appName]?.[email] || [];
+
+  if (userOrders.length === 0) {
+    orderContainer.innerHTML = `<p>No orders found for ${email} in ${appName}.</p>`;
+  } else {
+    userOrders.forEach(order => {
+      const card = document.createElement("div");
+      card.className = "order-card";
+      card.innerHTML = `
+        <h4>${order.item}</h4>
+        <p>Price: ${order.price}</p>
+      `;
+      orderContainer.appendChild(card);
+    });
+  }
+</script>
+
+</body>
+</html>
